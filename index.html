@@ -431,8 +431,10 @@ footer a{color:var(--muted)}
       nombre: n || '(sin nombre)', email: em || '(no dejó email)', busca: picks.join(', ') || '(no eligió)', mensaje: m || '(sin mensaje)' };
     if (em) data._replyto = em;
     if (!silent) { sendBtn.disabled = true; status.textContent = 'Enviando…'; }
+    var ctrl = window.AbortController ? new AbortController() : null;
+    if (ctrl) setTimeout(function(){ ctrl.abort(); }, 15000);
     return fetch('https://formsubmit.co/ajax/aguirreernesto2001@gmail.com', {
-      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data)
+      method: 'POST', signal: ctrl ? ctrl.signal : undefined, headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data)
     }).then(function(r){ return r.json(); }).then(function(j){
       var ok = j && (j.success === true || j.success === 'true');
       if (ok) lastSent = key;
