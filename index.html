@@ -365,7 +365,7 @@ footer a{color:var(--muted)}
     <div class="sec-head">
       <p class="eyebrow">Contacto</p>
       <h2>Contame qué necesitás</h2>
-      <p class="lead">Completá esto y se abre WhatsApp con tu mensaje listo para enviar.</p>
+      <p class="lead">Completá esto y mandámelo por email, o abrí WhatsApp con tu mensaje listo.</p>
     </div>
     <div class="contact">
       <form id="form" novalidate>
@@ -378,8 +378,13 @@ footer a{color:var(--muted)}
           <label class="chk"><input type="checkbox" id="f-4" value="una tienda online"><span>Tienda online</span></label>
           <label class="chk"><input type="checkbox" id="f-5" value="apoyo administrativo"><span>Administración</span></label>
         </fieldset>
+        <label for="f-email">Tu email<input id="f-email" name="email" type="email" autocomplete="email" placeholder="Para poder responderte"></label>
         <label for="f-msg">Mensaje<textarea id="f-msg" name="mensaje" placeholder="Contame un poco del puesto o del proyecto"></textarea></label>
-        <a id="wa" class="btn btn-primary" href="https://wa.me/5493815662655" target="_blank" rel="noopener" style="justify-self:start">Abrir WhatsApp con el mensaje</a>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+          <button id="send" class="btn btn-primary" type="submit">Enviar por email</button>
+          <a id="wa" class="btn btn-ghost" href="https://wa.me/5493815662655" target="_blank" rel="noopener">Abrir WhatsApp con el mensaje</a>
+        </div>
+        <p id="form-status" role="status" aria-live="polite" style="margin:0;color:var(--muted);min-height:1.4em"></p>
       </form>
       <div class="direct">
         <div class="direct-row"><div><small>Email</small><span class="v" id="mail">aguirreernesto2001@gmail.com</span></div><button class="copy" type="button" data-copy="mail">Copiar</button></div>
@@ -411,7 +416,33 @@ footer a{color:var(--muted)}
     wa.href = 'https://wa.me/5493815662655?text=' + encodeURIComponent(t);
   }
   document.getElementById('form').addEventListener('input', build);
-  document.getElementById('form').addEventListener('submit', function(e){ e.preventDefault(); });
+  var form = document.getElementById('form'), status = document.getElementById('form-status'), sendBtn = document.getElementById('send');
+  var lastSent = '';
+  function sendMail(silent){
+    var n = document.getElementById('f-nombre').value.trim();
+    var em = document.getElementById('f-email').value.trim();
+    var m = document.getElementById('f-msg').value.trim();
+    var picks = Array.prototype.slice.call(document.querySelectorAll('fieldset input:checked')).map(function(i){return i.value});
+    if (!m && !picks.length) { if (!silent) status.textContent = 'Escribí un mensaje o elegí qué buscás.'; return Promise.resolve(false); }
+    if (!silent && em && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { status.textContent = 'Revisá tu email.'; return Promise.resolve(false); }
+    var key = n + '|' + em + '|' + picks.join(',') + '|' + m;
+    if (key === lastSent) { if (!silent) status.textContent = 'Ya recibí tu mensaje. ¡Gracias!'; return Promise.resolve(true); }
+    var data = { _subject: 'Nueva consulta desde tu portafolio' + (n ? ' – ' + n : ''), _template: 'table', _captcha: 'false',
+      nombre: n || '(sin nombre)', email: em || '(no dejó email)', busca: picks.join(', ') || '(no eligió)', mensaje: m || '(sin mensaje)' };
+    if (em) data._replyto = em;
+    if (!silent) { sendBtn.disabled = true; status.textContent = 'Enviando…'; }
+    return fetch('https://formsubmit.co/ajax/aguirreernesto2001@gmail.com', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data)
+    }).then(function(r){ return r.json(); }).then(function(j){
+      var ok = j && (j.success === true || j.success === 'true');
+      if (ok) lastSent = key;
+      if (!silent) status.textContent = ok ? '¡Listo! Te respondo a la brevedad.' : 'No se pudo enviar. Probá por WhatsApp.';
+      return ok;
+    }).catch(function(){ if (!silent) status.textContent = 'No se pudo enviar. Probá por WhatsApp.'; return false; })
+      .finally(function(){ sendBtn.disabled = false; });
+  }
+  form.addEventListener('submit', function(e){ e.preventDefault(); sendMail(false); });
+  wa.addEventListener('click', function(){ sendMail(true); });
   build();
   document.querySelectorAll('.copy').forEach(function(b){
     b.addEventListener('click', function(){
