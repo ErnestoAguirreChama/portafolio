@@ -1,0 +1,427 @@
+<title>Ernesto Aguirre Chama</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Ernesto Aguirre Chama: automatizaciones, bots, páginas web y operaciones para negocios. Trabajo remoto desde Argentina.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column of reading text, widening to a 2-col grid for hero and projects; a bot "console" is the signature element. */
+:root{
+  --bg:#F3F4F6; --surface:#FFFFFF; --ink:#11131C; --muted:#5A5F70; --line:#DCDFE6;
+  --accent:#2747D6; --accent-ink:#FFFFFF; --ok:#1E8A4C; --wait:#B7791F;
+  --console:#151827; --console-ink:#E6E8F0; --console-muted:#8D93A8;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1018; --surface:#161925; --ink:#ECEEF4; --muted:#9AA0B3; --line:#262A3A;
+  --accent:#7C93FF; --accent-ink:#0E1018; --ok:#4CC37E; --wait:#E3A94B;
+  --console:#090B12; --console-ink:#E6E8F0; --console-muted:#7F859A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1018; --surface:#161925; --ink:#ECEEF4; --muted:#9AA0B3; --line:#262A3A;
+  --accent:#7C93FF; --accent-ink:#0E1018; --ok:#4CC37E; --wait:#E3A94B;
+  --console:#090B12; --console-ink:#E6E8F0; --console-muted:#7F859A; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--f-body);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-0.02em}
+h1{font-size:clamp(2.4rem, 6vw, 4.2rem);line-height:1.02;font-weight:800}
+h2{font-size:clamp(1.8rem, 3.6vw, 2.6rem);line-height:1.1;font-weight:700}
+h3{font-size:1.3rem;line-height:1.2;font-weight:700}
+p{margin:0}
+.eyebrow{font:500 .78rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lead{font-size:1.18rem;color:var(--muted);max-width:60ch}
+section{padding-block:clamp(56px, 9vw, 112px);border-top:1px solid var(--line)}
+.sec-head{display:grid;gap:12px;margin-bottom:40px;max-width:720px}
+
+/* nav */
+header.nav{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)));padding-inline:max(16px, env(safe-area-inset-left, 0px))}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.brand{font:700 1.05rem/1 var(--f-display);text-decoration:none;display:flex;gap:10px;align-items:center}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px color-mix(in srgb, var(--ok) 22%, transparent)}
+.nav nav{display:flex;gap:22px;font-size:.95rem}
+.nav nav a{text-decoration:none;color:var(--muted)}
+.nav nav a:hover{color:var(--ink)}
+@media (max-width:820px){.nav nav{display:none}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font:600 .98rem/1 var(--f-body);text-decoration:none;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{border-color:var(--line);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--muted)}
+.btn-sm{padding:9px 16px;font-size:.9rem}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-block:clamp(48px, 8vw, 96px)}
+@media (max-width:900px){.hero{grid-template-columns:1fr;gap:40px}}
+.hero-copy{display:grid;gap:24px;min-width:0}
+.hello{display:flex;align-items:center;gap:14px}
+.hello img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
+.hello span{font-weight:600}
+.hello small{display:block;color:var(--muted);font-size:.9rem;font-weight:400}
+h1 em{font-style:normal;color:var(--accent)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.avail{display:flex;gap:10px;align-items:center;font:500 .85rem/1.4 var(--f-mono);color:var(--muted)}
+.avail::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);flex:none}
+.facts{display:flex;flex-wrap:wrap;gap:8px 28px;padding-top:8px;border-top:1px dashed var(--line);font-size:.95rem;color:var(--muted)}
+.facts b{color:var(--ink);font-family:var(--f-display);font-size:1.15rem;margin-right:4px}
+
+/* console: signature element */
+.console{background:var(--console);color:var(--console-ink);border-radius:18px;padding:18px 18px 20px;font:400 .86rem/1.55 var(--f-mono);box-shadow:0 30px 60px -30px rgba(10,14,40,.45);min-width:0;overflow:hidden}
+.console-top{display:flex;justify-content:space-between;align-items:center;color:var(--console-muted);font-size:.78rem;margin-bottom:14px;gap:10px}
+.console-top b{color:var(--console-ink);font-weight:500}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:#3A3F55}
+.panel-btns{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.panel-btns span{border:1px solid #2E3350;border-radius:6px;padding:3px 8px;font-size:.74rem;color:#C9CDE0}
+.msg{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:8px 0;border-top:1px solid #23273B}
+.av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-weight:500;background:#2B3150}
+.av.bot{background:#2747D6;color:#fff}
+.who{color:var(--console-muted);font-size:.74rem}
+.st{display:inline-block;margin-left:6px}
+.st.ok{color:#4CC37E}.st.wait{color:#E3A94B}
+.line-in{animation:rise .5s ease both}
+.line-in:nth-of-type(2){animation-delay:.15s}.line-in:nth-of-type(3){animation-delay:.3s}.line-in:nth-of-type(4){animation-delay:.45s}
+@keyframes rise{from{transform:translateY(6px)}to{transform:none}}
+.console-cap{margin-top:12px;color:var(--muted);font-size:.85rem}
+
+/* projects */
+.projects{display:grid;gap:28px}
+.proj{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(18px, 3vw, 32px)}
+.proj:nth-child(even) .shot{order:2}
+@media (max-width:900px){.proj{grid-template-columns:1fr}.proj:nth-child(even) .shot{order:0}}
+.proj > div{min-width:0}
+.shot{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg);aspect-ratio:16/10;max-width:100%}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.shot.console{aspect-ratio:auto;border:0}
+.proj-body{display:grid;gap:14px}
+.where{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font:500 .72rem/1 var(--f-mono);letter-spacing:.04em;padding:6px 9px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--muted)}
+.tag.live{color:var(--ok);border-color:color-mix(in srgb, var(--ok) 40%, var(--line))}
+.proj ul{margin:0;padding-left:1.1em;display:grid;gap:6px;color:var(--muted)}
+.proj ul b{color:var(--ink);font-weight:600}
+.proj-link{font-weight:600;color:var(--accent);text-decoration:none}
+.proj-link:hover{text-decoration:underline}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+@media (max-width:720px){.services{grid-template-columns:1fr}}
+.svc{background:var(--surface);padding:28px;display:grid;gap:10px;align-content:start}
+.svc p{color:var(--muted)}
+.svc .eg{font:400 .82rem/1.5 var(--f-mono);color:var(--muted);border-left:2px solid var(--accent);padding-left:10px}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:20px;counter-reset:s;list-style:none;margin:0;padding:0}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2, minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.steps li{counter-increment:s;display:grid;gap:8px;padding-top:18px;border-top:2px solid var(--ink)}
+.steps li::before{content:"Paso " counter(s);font:500 .75rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.steps p{color:var(--muted);font-size:.98rem}
+.ai-note{margin-top:36px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;display:grid;gap:8px;max-width:820px}
+.ai-note p{color:var(--muted)}
+
+/* experience */
+.xp{display:grid;gap:0;max-width:880px}
+.xp-row{display:grid;grid-template-columns:170px 1fr;gap:24px;padding-block:22px;border-top:1px solid var(--line)}
+.xp-row:first-child{border-top:0}
+@media (max-width:620px){.xp-row{grid-template-columns:1fr;gap:6px}}
+.xp-date{font:500 .82rem/1.6 var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.xp-row h3{font-size:1.12rem}
+.xp-row .org{color:var(--muted);font-size:.95rem;margin-top:2px}
+.xp-row p.d{margin-top:8px;color:var(--muted)}
+
+/* recruiters */
+.rec{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+@media (max-width:860px){.rec{grid-template-columns:1fr}}
+.kv{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.kv th,.kv td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.98rem}
+.kv tr:last-child th,.kv tr:last-child td{border-bottom:0}
+.kv th{font:500 .78rem/1.6 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:38%}
+.rec-side{display:grid;gap:18px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+form{display:grid;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px}
+label{font-weight:600;font-size:.95rem;display:grid;gap:6px}
+input,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
+textarea{min-height:110px;resize:vertical}
+fieldset{border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+legend{font-weight:600;font-size:.95rem;margin-bottom:8px}
+.chk{position:relative}
+.chk input{position:absolute;opacity:0;width:1px;height:1px}
+.chk span{display:inline-block;padding:8px 12px;border-radius:999px;border:1px solid var(--line);font-size:.9rem;cursor:pointer;background:var(--bg)}
+.chk input:checked + span{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.chk input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.direct{display:grid;gap:14px;align-content:start}
+.direct-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;flex-wrap:wrap}
+.direct-row div{min-width:0}
+.direct-row small{display:block;color:var(--muted);font:500 .74rem/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.direct-row span.v{font-weight:600;word-break:break-all;user-select:all}
+.copy{font:500 .82rem/1 var(--f-body);border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:8px 10px;cursor:pointer}
+footer{border-top:1px solid var(--line);padding-block:32px;color:var(--muted);font-size:.92rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--muted)}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><i aria-hidden="true"></i>Ernesto Aguirre</a>
+    <nav aria-label="Secciones">
+      <a href="#proyectos">Proyectos</a>
+      <a href="#servicios">Qué hago</a>
+      <a href="#como-trabajo">Cómo trabajo</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#reclutadores">Para reclutadores</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#contacto">Escribime</a>
+  </div>
+</header>
+
+<main class="wrap" id="inicio">
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="hello">
+        <img src="img/foto-ernesto.jpg" alt="Foto de Ernesto Aguirre Chama" width="56" height="56">
+        <span>Soy Ernesto Aguirre Chama<small>Tucumán, Argentina · Remoto</small></span>
+      </div>
+      <h1>Automatizo el trabajo repetitivo de tu <em>negocio</em>.</h1>
+      <p class="lead">Hago bots, automatizaciones y páginas web simples, y me encargo de la parte administrativa. Hoy manejo en remoto la operación de 3 agencias de Estados Unidos con más de 200 agentes cada una, y construyo las herramientas que usan todos los días.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#contacto">Contame qué necesitás</a>
+        <a class="btn btn-ghost" href="#proyectos">Ver lo que construí</a>
+      </div>
+      <p class="avail">Noviembre 2026: disponible para trabajo remoto</p>
+      <div class="facts">
+        <span><b>3</b>agencias en EE. UU.</span>
+        <span><b>+200</b>agentes por agencia</span>
+        <span><b>+2 años</b>con mis emprendimientos</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="console" role="img" aria-label="Ejemplo del bot de operaciones respondiendo pedidos de agentes en Discord">
+        <div class="console-top"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span><b>#dialer-support</b> · Discord</span></div>
+        <div class="panel-btns" aria-hidden="true"><span>Add States</span><span>Remove States</span><span>Playlist Info</span><span>Add Call Logs</span><span>Talk to an Admin</span></div>
+        <div class="msg line-in"><div class="av">MR</div><div><span class="who">María R. · agente</span><br>Maria Rodriguez - Add TX, FL <span class="st ok">✓</span></div></div>
+        <div class="msg line-in"><div class="av bot">bot</div><div><span class="who">Bot de operaciones</span><br>Estados TX y FL agregados en ReadyMode. Te mandé el detalle por privado.</div></div>
+        <div class="msg line-in"><div class="av">JL</div><div><span class="who">James L. · agente</span><br>Create Agent <span class="st wait">esperando aprobación</span></div></div>
+        <div class="msg line-in"><div class="av bot">bot</div><div><span class="who">Bot de operaciones</span><br>Solicitud enviada a tu Upline. Si nadie responde en 48 h, vence y te aviso.</div></div>
+      </div>
+      <p class="console-cap">Así trabaja el bot que hice para las agencias: los agentes piden y el bot lo resuelve solo.</p>
+    </div>
+  </div>
+</main>
+
+<section id="proyectos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Proyectos</p>
+      <h2>Cosas que construí y hoy se usan</h2>
+      <p class="lead">Todos están en producción, con usuarios y clientes reales.</p>
+    </div>
+
+    <div class="projects">
+      <article class="proj">
+        <div class="shot console" aria-hidden="true">
+          <div class="console-top"><span class="dots"><i></i><i></i><i></i></span><span><b>readymode-bot</b> v0.31</span></div>
+          <div class="msg"><div class="av">AD</div><div><span class="who">Admin</span><br>!sync</div></div>
+          <div class="msg"><div class="av bot">bot</div><div><span class="who">Bot</span><br>Hoja actualizada: 412 agentes revisados · 9 con pago vencido · 3 sin suscripción.</div></div>
+          <div class="msg"><div class="av">AG</div><div><span class="who">Agente</span><br>I have bad account info</div></div>
+          <div class="msg"><div class="av bot">bot</div><div><span class="who">Bot</span><br>Te mandé tu usuario y contraseña por privado. El mensaje se borra en 30 s.</div></div>
+        </div>
+        <div class="proj-body">
+          <div class="where"><span class="tag live">En uso</span><span class="tag">Estados Unidos</span><span class="tag">Automatización</span></div>
+          <h3>Bot de operaciones para call centers</h3>
+          <p>Las agencias tenían a cientos de agentes pidiendo cambios a mano todo el día. Hice un bot de Discord que recibe cada pedido, lo hace solo en el sistema de llamadas y le contesta al agente por privado.</p>
+          <ul>
+            <li><b>Panel con botones</b> para agregar o quitar estados, cargar registros de llamadas y reiniciar leads.</li>
+            <li><b>Altas de agentes con aprobación</b> de su responsable, con vencimiento a las 48 h.</li>
+            <li><b>Control de pagos</b>: cruza las suscripciones de Whop con la hoja de cálculo y marca quién está al día.</li>
+            <li><b>Seguridad</b>: cada agente solo recibe sus propios datos, y se borran a los 30 segundos.</li>
+          </ul>
+          <div class="where"><span class="tag">Node.js</span><span class="tag">discord.js</span><span class="tag">Playwright</span><span class="tag">Google Sheets</span><span class="tag">Whop</span></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="shot"><img src="img/nextbooks.webp" alt="Página principal de la tienda NextBooks" loading="lazy"></div>
+        <div class="proj-body">
+          <div class="where"><span class="tag live">En línea</span><span class="tag">Argentina</span><span class="tag">E-commerce</span></div>
+          <h3>NextRound E-Commerce y NextBooks</h3>
+          <p>Una tienda online que vendo por suscripción mensual a negocios. El cliente vende sin comisión, recibe el pedido armado en su WhatsApp y maneja todo desde un panel. NextBooks, mi tienda de libros, funciona sobre esta misma plataforma.</p>
+          <ul>
+            <li><b>Catálogo con buscador</b>, categorías, combos, promociones y stock.</li>
+            <li><b>Cobros con Mercado Pago</b>: tarjeta, cuotas o transferencia.</li>
+            <li><b>Panel de administración</b> con pedidos, clientes, estadísticas, Píxel de Meta y verificación de Google.</li>
+          </ul>
+          <div class="where"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind</span><span class="tag">Supabase</span><span class="tag">Vercel</span></div>
+          <a class="proj-link" href="https://www.nextbooks.com.ar" target="_blank" rel="noopener">Ver NextBooks →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="shot"><img src="img/nextround.webp" alt="Página principal de NextRound" loading="lazy"></div>
+        <div class="proj-body">
+          <div class="where"><span class="tag live">En línea</span><span class="tag">Argentina y EE. UU.</span><span class="tag">Sitio web</span></div>
+          <h3>NextRound</h3>
+          <p>Mi emprendimiento de proyectos digitales para negocios. Diseñé y programé el sitio completo, en español y en inglés.</p>
+          <ul>
+            <li><b>Centro de ayuda</b> con buscador para los clientes de la tienda.</li>
+            <li><b>Páginas legales</b> y botón de arrepentimiento que genera un código y avisa por email.</li>
+            <li><b>Planes y cupones</b> conectados a la suscripción.</li>
+          </ul>
+          <div class="where"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Vercel</span></div>
+          <a class="proj-link" href="https://nextround.com.ar" target="_blank" rel="noopener">Ver nextround.com.ar →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Qué hago</p>
+      <h2>En qué te puedo ayudar</h2>
+    </div>
+    <div class="services">
+      <div class="svc"><h3>Automatizaciones y bots</h3><p>Tomo las tareas que tu equipo repite todos los días y hago que se resuelvan solas.</p><p class="eg">Ej.: un bot que atiende pedidos de 200 agentes en Discord.</p></div>
+      <div class="svc"><h3>Páginas web simples</h3><p>Landings, sitios de empresa y tiendas online, rápidos de lanzar y fáciles de mantener.</p><p class="eg">Ej.: tienda con pedidos por WhatsApp y Mercado Pago.</p></div>
+      <div class="svc"><h3>Administración y operaciones</h3><p>Llevo el día a día: reportes, planillas, seguimiento de pagos, altas y bajas, y coordinación del equipo.</p><p class="eg">Ej.: operación de 3 agencias con +200 agentes cada una.</p></div>
+      <div class="svc"><h3>Ventas y CRM</h3><p>Ordeno el proceso comercial y las herramientas: CRM, GoHighLevel, ReadyMode y planillas conectadas.</p><p class="eg">Ej.: estadísticas de ventas de toda la empresa en una hoja.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="como-trabajo">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Cómo trabajo</p>
+      <h2>Del problema a algo que funciona</h2>
+    </div>
+    <ol class="steps">
+      <li><h3>Entiendo el proceso</h3><p>Veo cómo se hace hoy, quién lo hace y dónde se pierde tiempo.</p></li>
+      <li><h3>Lo construyo con IA</h3><p>Uso inteligencia artificial para programar rápido, y reviso cada cambio yo mismo.</p></li>
+      <li><h3>Lo pruebo con casos reales</h3><p>Antes de entregar, lo pruebo con los datos y las personas que lo van a usar.</p></li>
+      <li><h3>Lo entrego y lo acompaño</h3><p>Explico cómo se usa, dejo instrucciones simples y sigo atento a mejoras.</p></li>
+    </ol>
+    <div class="ai-note">
+      <h3>¿Cómo uso la inteligencia artificial?</h3>
+      <p>Trabajo todos los días con herramientas como Claude para escribir código, armar automatizaciones y documentar. La IA me deja entregar en días lo que antes llevaba semanas. Las decisiones y la revisión final las tomo yo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="experiencia">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Experiencia</p>
+      <h2>Dónde trabajé</h2>
+    </div>
+    <div class="xp">
+      <div class="xp-row"><p class="xp-date">2024 – hoy</p><div><h3>Senior Manager de operaciones</h3><p class="org">Enhance Companies, The Round Table Insurance y Ascent Dealer Support · EE. UU., remoto</p><p class="d">Administración, ventas y operación de 3 agencias con más de 200 a 300 agentes cada una. Equipo de 10 personas a cargo. Creé los bots y automatizaciones que usa la operación.</p></div></div>
+      <div class="xp-row"><p class="xp-date">2026 – hoy</p><div><h3>Fundador</h3><p class="org">NextRound · Tucumán, Argentina</p><p class="d">Sitios y tiendas online para negocios, y una plataforma propia de e-commerce por suscripción.</p></div></div>
+      <div class="xp-row"><p class="xp-date">2024 – hoy</p><div><h3>Fundador</h3><p class="org">NextBooks · Tucumán, Argentina</p><p class="d">Tienda de libros. Ventas, marketing digital y análisis de métricas.</p></div></div>
+      <div class="xp-row"><p class="xp-date">2024 – 2026</p><div><h3>Cofundador</h3><p class="org">RiseUp · Argentina</p><p class="d">Diseño y desarrollo de páginas web. Gestión de clientes de punta a punta.</p></div></div>
+      <div class="xp-row"><p class="xp-date">2023</p><div><h3>Full Stack Developer</h3><p class="org">Henry · Bootcamp</p><p class="d">Front end, back end y bases de datos, con proyectos individuales y en equipo.</p></div></div>
+      <div class="xp-row"><p class="xp-date">2022 – 2023</p><div><h3>Atención al cliente y ventas</h3><p class="org">Atlantis Showroom · Tucumán</p></div></div>
+      <div class="xp-row"><p class="xp-date">2020 – 2022</p><div><h3>Empresario independiente</h3><p class="org">Amway · Tucumán</p><p class="d">Lideré una red de más de 30 personas.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="reclutadores">
+  <div class="wrap rec">
+    <div class="sec-head" style="margin-bottom:0">
+      <p class="eyebrow">Para reclutadores</p>
+      <h2>Lo importante, en una tabla</h2>
+      <p class="lead">Si estás buscando a alguien para automatizar, hacer webs o llevar la operación de un equipo remoto, escribime.</p>
+      <div class="ctas" style="margin-top:12px">
+        <a class="btn btn-primary" href="https://claude.ai/artifact/QtwRb3TM3HebUqzMDnPiNJ" target="_blank" rel="noopener">Ver mi CV</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/ernesto-aguirre-chama-a9a090269/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <table class="kv">
+      <tr><th scope="row">Rol</th><td>Automatizaciones y bots · Desarrollo web con IA · Operaciones y administración</td></tr>
+      <tr><th scope="row">Modalidad</th><td>Remoto, tiempo completo o por contrato</td></tr>
+      <tr><th scope="row">Zona horaria</th><td>GMT-3 (Argentina), con experiencia en horarios de EE. UU.</td></tr>
+      <tr><th scope="row">Idiomas</th><td>Español nativo · Inglés básico</td></tr>
+      <tr><th scope="row">Herramientas</th><td>Node.js, React, Supabase, Vercel, Playwright, Discord, Google Sheets, ReadyMode, GoHighLevel, CRM</td></tr>
+      <tr><th scope="row">Disponible</th><td>Desde ahora</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Contacto</p>
+      <h2>Contame qué necesitás</h2>
+      <p class="lead">Completá esto y se abre WhatsApp con tu mensaje listo para enviar.</p>
+    </div>
+    <div class="contact">
+      <form id="form" novalidate>
+        <label for="f-nombre">Tu nombre<input id="f-nombre" name="nombre" autocomplete="name" placeholder="Ej.: Laura, de Agencia Norte"></label>
+        <fieldset>
+          <legend>¿Qué buscás?</legend>
+          <label class="chk"><input type="checkbox" id="f-1" value="un puesto remoto"><span>Puesto remoto</span></label>
+          <label class="chk"><input type="checkbox" id="f-2" value="una automatización o bot"><span>Automatización o bot</span></label>
+          <label class="chk"><input type="checkbox" id="f-3" value="una página web"><span>Página web</span></label>
+          <label class="chk"><input type="checkbox" id="f-4" value="una tienda online"><span>Tienda online</span></label>
+          <label class="chk"><input type="checkbox" id="f-5" value="apoyo administrativo"><span>Administración</span></label>
+        </fieldset>
+        <label for="f-msg">Mensaje<textarea id="f-msg" name="mensaje" placeholder="Contame un poco del puesto o del proyecto"></textarea></label>
+        <a id="wa" class="btn btn-primary" href="https://wa.me/5493815662655" target="_blank" rel="noopener" style="justify-self:start">Abrir WhatsApp con el mensaje</a>
+      </form>
+      <div class="direct">
+        <div class="direct-row"><div><small>Email</small><span class="v" id="mail">aguirreernesto2001@gmail.com</span></div><button class="copy" type="button" data-copy="mail">Copiar</button></div>
+        <div class="direct-row"><div><small>WhatsApp</small><span class="v" id="tel">+54 9 381 566-2655</span></div><button class="copy" type="button" data-copy="tel">Copiar</button></div>
+        <div class="direct-row"><div><small>LinkedIn</small><a class="v" href="https://www.linkedin.com/in/ernesto-aguirre-chama-a9a090269/" target="_blank" rel="noopener">ernesto-aguirre-chama</a></div></div>
+        <div class="direct-row"><div><small>GitHub</small><a class="v" href="https://github.com/ErnestoAguirreChama" target="_blank" rel="noopener">ErnestoAguirreChama</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Ernesto Aguirre Chama · Tucumán, Argentina · © 2026</span>
+    <span><a href="https://nextround.com.ar" target="_blank" rel="noopener">NextRound</a> · <a href="https://www.nextbooks.com.ar" target="_blank" rel="noopener">NextBooks</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var wa = document.getElementById('wa');
+  function build(){
+    var n = document.getElementById('f-nombre').value.trim();
+    var m = document.getElementById('f-msg').value.trim();
+    var picks = Array.prototype.slice.call(document.querySelectorAll('fieldset input:checked')).map(function(i){return i.value});
+    var t = 'Hola Ernesto' + (n ? ', soy ' + n : '') + '.';
+    if (picks.length) t += ' Busco ' + picks.join(', ') + '.';
+    if (m) t += ' ' + m;
+    wa.href = 'https://wa.me/5493815662655?text=' + encodeURIComponent(t);
+  }
+  document.getElementById('form').addEventListener('input', build);
+  document.getElementById('form').addEventListener('submit', function(e){ e.preventDefault(); });
+  build();
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click', function(){
+      var el = document.getElementById(b.dataset.copy), txt = el.textContent;
+      function done(){ b.textContent = 'Copiado'; setTimeout(function(){ b.textContent = 'Copiar'; }, 1600); }
+      try {
+        navigator.clipboard.writeText(txt).then(done, function(){ select(el); });
+      } catch (e) { select(el); }
+    });
+  });
+  function select(el){ var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+})();
+</script>
