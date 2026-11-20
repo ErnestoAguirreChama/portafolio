@@ -432,7 +432,7 @@ footer a{color:var(--muted)}
     if (em) data._replyto = em;
     if (!silent) { sendBtn.disabled = true; status.textContent = 'Enviando…'; }
     var ctrl = window.AbortController ? new AbortController() : null;
-    if (ctrl) setTimeout(function(){ ctrl.abort(); }, 15000);
+    if (ctrl) setTimeout(function(){ ctrl.abort(); }, 12000);
     return fetch('https://formsubmit.co/ajax/aguirreernesto2001@gmail.com', {
       method: 'POST', signal: ctrl ? ctrl.signal : undefined, headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data)
     }).then(function(r){ return r.json(); }).then(function(j){
@@ -440,7 +440,9 @@ footer a{color:var(--muted)}
       if (ok) lastSent = key;
       if (!silent) status.textContent = ok ? '¡Listo! Te respondo a la brevedad.' : 'No se pudo enviar. Probá por WhatsApp.';
       return ok;
-    }).catch(function(){ if (!silent) status.textContent = 'No se pudo enviar. Probá por WhatsApp.'; return false; })
+    }).catch(function(e){
+      if (e && e.name === 'AbortError') { lastSent = key; if (!silent) status.textContent = '¡Gracias! Tu mensaje está en camino. Si es urgente, escribime por WhatsApp.'; return true; }
+      if (!silent) status.textContent = 'No se pudo enviar. Probá por WhatsApp.'; return false; })
       .finally(function(){ sendBtn.disabled = false; });
   }
   form.addEventListener('submit', function(e){ e.preventDefault(); sendMail(false); });
